@@ -1,0 +1,12 @@
+{
+  "name": "Free-Cart-Client",
+  "displayName": "Free-Cart-Client",
+  "expo": {
+    "name": "Free-Cart-Client",
+    "slug": "Free-Cart-Client",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
