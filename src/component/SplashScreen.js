@@ -23,7 +23,6 @@ function SplashScreen({cartItems, dispatch, navigation, route}) {
     })
 
     return(
-        <>
             <View style={{
                 flex: 1,
                 alignItems: 'center',
@@ -32,7 +31,6 @@ function SplashScreen({cartItems, dispatch, navigation, route}) {
                 <Text>Welcome to Free Cart Client</Text>
                 <Text>Developed & Maintained by Maifee Ul Asad</Text>
             </View>
-        </>
     )
 }
 
