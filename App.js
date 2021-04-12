@@ -8,6 +8,7 @@ import {reducer} from "./src/reducer";
 import SplashScreen from "./src/component/SplashScreen";
 import HomeScreen from "./src/component/HomeScreen";
 import ItemScreen from "./src/component/ItemScreen";
+import CartScreen from "./src/component/CartScreen";
 
 export const PageContext = React.createContext();
 const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ export default function App() {
                         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
                         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                         <Stack.Screen name="ItemScreen" component={ItemScreen}/>
+                        <Stack.Screen name="CartScreen" component={CartScreen}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
