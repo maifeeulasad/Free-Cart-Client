@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Button, Dimensions, Image, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
+import {setItemAction} from "../action";
 
 import * as defaults from '../defaults'
 
 const screenWidth = Dimensions.get('window').width;
 
-function ItemPreview({data, onClick, id}) {
+function ItemPreview({data, onClick}) {
 
     const [count, setCount] = useState(0);
     const [availability] = useState(data.availability || 0)
@@ -62,10 +63,12 @@ function ItemPreview({data, onClick, id}) {
                     <Button
                         title={"-"}
                         onPress={() => {
-                            if(count>0){
-                                setCount(count-1)
+                            if (count > 0) {
+                                setItemAction({[data.id]: count - 1})
+                                setCount(count - 1)
                             }
-                            if(count<=minimumOrder){
+                            if (count <= minimumOrder) {
+                                setItemAction({[data.id]: 0})
                                 setCount(0)
                             }
                         }}/>
@@ -75,11 +78,13 @@ function ItemPreview({data, onClick, id}) {
                     <Button
                         title={"+"}
                         onPress={() => {
-                            if(availability - count > 0 && availability>minimumOrder){
-                                if(count<minimumOrder){
+                            if (availability - count > 0 && availability > minimumOrder) {
+                                if (count < minimumOrder) {
+                                    setItemAction({[data.id]: minimumOrder})
                                     setCount(minimumOrder)
-                                }else{
-                                    setCount(count+1)
+                                } else {
+                                    setItemAction({[data.id]: count + 1})
+                                    setCount(count + 1)
                                 }
                             }
                         }}/>
@@ -91,7 +96,7 @@ function ItemPreview({data, onClick, id}) {
 
 const mapStateToProps = (state) => {
     return {
-        cartItems: {},
+        cartItems: state.cartItems,
     };
 };
 
