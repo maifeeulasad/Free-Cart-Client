@@ -46,7 +46,7 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
 
 const mapStateToProps = (state) => {
     return {
-        cartItems: {},
+        cartItems: state.cartItems,
     };
 };
 

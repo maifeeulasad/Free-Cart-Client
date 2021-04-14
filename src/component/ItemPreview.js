@@ -7,7 +7,7 @@ import * as defaults from '../defaults'
 
 const screenWidth = Dimensions.get('window').width;
 
-function ItemPreview({data, onClick}) {
+function ItemPreview({cartItems, data, onClick}) {
 
     const [count, setCount] = useState(0);
     const [availability] = useState(data.availability || 0)
