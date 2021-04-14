@@ -26,7 +26,7 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
                 <ItemPreview
                     data={item}
                     onClick={(productId) => {
-                        navigation.navigate('ItemScreen', {
+                        navigation.navigate('ItemDetailed', {
                             id: productId,
                         });
                     }}
@@ -39,7 +39,7 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
 
 const mapStateToProps = (state) => {
     return {
-        cartItems: [],
+        cartItems: {},
     };
 };
 

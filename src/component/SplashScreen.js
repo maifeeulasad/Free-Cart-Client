@@ -36,7 +36,7 @@ function SplashScreen({cartItems, dispatch, navigation, route}) {
 
 const mapStateToProps = (state) => {
     return {
-        cartItems: [],
+        cartItems: {},
     };
 };
 
