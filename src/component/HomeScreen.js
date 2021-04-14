@@ -18,7 +18,6 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
 
     return (
         <>
-
             <FlatList
                 contentContainerStyle={{padding: 5}}
                 showsHorizontalScrollIndicator={false}
