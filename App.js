@@ -20,7 +20,10 @@ export default function App() {
         <>
             <Provider store={store}>
                 <NavigationContainer>
-                    <Stack.Navigator>
+                    <Stack.Navigator
+                        screenOptions={{
+                            headerShown: false
+                        }}>
                         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
                         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                         <Stack.Screen name="ItemDetailed" component={ItemDetailed}/>
