@@ -7,7 +7,7 @@ import {reducer} from "./src/reducer";
 
 import SplashScreen from "./src/component/SplashScreen";
 import HomeScreen from "./src/component/HomeScreen";
-import ItemScreen from "./src/component/ItemScreen";
+import ItemDetailed from "./src/component/ItemDetailed";
 import CartScreen from "./src/component/CartScreen";
 
 export const PageContext = React.createContext();
@@ -23,7 +23,7 @@ export default function App() {
                     <Stack.Navigator>
                         <Stack.Screen name="SplashScreen" component={SplashScreen}/>
                         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
-                        <Stack.Screen name="ItemScreen" component={ItemScreen}/>
+                        <Stack.Screen name="ItemDetailed" component={ItemDetailed}/>
                         <Stack.Screen name="CartScreen" component={CartScreen}/>
                     </Stack.Navigator>
                 </NavigationContainer>

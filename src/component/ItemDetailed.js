@@ -6,7 +6,7 @@ import * as defaults from '../defaults'
 import axios from "axios";
 
 
-function ItemScreen({cartItems, dispatch, navigation, route}) {
+function ItemDetailed({cartItems, dispatch, navigation, route}) {
     const [product, setProduct] = useState({});
     useEffect(function () {
         axios
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => {
 }
 ;
 
-export default connect(mapStateToProps)(ItemScreen);
+export default connect(mapStateToProps)(ItemDetailed);

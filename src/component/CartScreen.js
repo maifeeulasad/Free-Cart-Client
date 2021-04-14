@@ -5,10 +5,8 @@ import {connect} from 'react-redux';
 
 function CartScreen({cartItems, dispatch, navigation, route}) {
 
-
     return (
         <Text>Cart</Text>
-
     );
 }
 
