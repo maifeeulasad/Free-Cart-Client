@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, ScrollView} from 'react-native';
+import {Image, Text, ScrollView,TouchableOpacity,Button} from 'react-native';
 import {connect} from 'react-redux';
 
 import * as defaults from '../defaults'
@@ -53,6 +53,11 @@ function ItemDetailed({cartItems, dispatch, navigation, route}) {
                 + " = "
                 + (product.price - product.discount > 0 ? product.price - product.discount : 0)}
             </Text>
+            <Button
+                title={"Cart"}
+                onPress={()=>{
+                    navigation.navigate('CartScreen',{})
+                }}/>
         </ScrollView>
     );
 }

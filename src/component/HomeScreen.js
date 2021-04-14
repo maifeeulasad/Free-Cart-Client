@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, ScrollView,Button} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
 import axios from "axios";
@@ -17,23 +17,31 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
     }, []);
 
     return (
-        <FlatList
-            contentContainerStyle={{padding: 5}}
-            showsHorizontalScrollIndicator={false}
-            numColumns={2}
-            data={products}
-            renderItem={({item}) => (
-                <ItemPreview
-                    data={item}
-                    onClick={(productId) => {
-                        navigation.navigate('ItemDetailed', {
-                            id: productId,
-                        });
-                    }}
-                />
-            )}
-            keyExtractor={(item, count) => count.toString()}
-        />
+        <>
+
+            <FlatList
+                contentContainerStyle={{padding: 5}}
+                showsHorizontalScrollIndicator={false}
+                numColumns={2}
+                data={products}
+                renderItem={({item}) => (
+                    <ItemPreview
+                        data={item}
+                        onClick={(productId) => {
+                            navigation.navigate('ItemDetailed', {
+                                id: productId,
+                            });
+                        }}
+                    />
+                )}
+                keyExtractor={(item, count) => count.toString()}
+            />
+            <Button
+                title={"Cart"}
+                onPress={()=>{
+                    navigation.navigate('CartScreen',{})
+                }}/>
+        </>
     )
 }
 
