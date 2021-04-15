@@ -8,17 +8,6 @@ function CartScreen({cartItems, dispatch, navigation, route}) {
 
     const [items, setItems] = useState([])
 
-    function relaunchHomeScreen() {
-        navigation.navigate('HomeScreen', {cartItems:cartItems});
-    }
-
-    useEffect(() => {
-        BackHandler.addEventListener('hardwareBackPress', relaunchHomeScreen);
-        return () => {
-            BackHandler.removeEventListener('hardwareBackPress', relaunchHomeScreen);
-        };
-    }, []);
-
     useEffect(()=>{
         let temItems = []
         Object.keys(cartItems).map((key)=>{

@@ -10,7 +10,7 @@ const screenWidth = Dimensions.get('window').width;
 
 function ItemPreview({cartItems, data, onClick, dispatch, id}) {
 
-    const [count, setCount] = useState(id === undefined ? 0 : cartItems[id]);
+    const [count, setCount] = useState(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]) : cartItems[id]);
     const [availability, setAvailability] = useState(id === undefined ? (data.availability || 0) : 0)
     const [minimumOrder, setMinimumOrder] = useState(id === undefined ? (data.minimum_order || 0) : 0)
     const [image, setImage] = useState((id === undefined && data.image !== "" && data.image !== undefined) ? data.image : defaults.imageUrl)
