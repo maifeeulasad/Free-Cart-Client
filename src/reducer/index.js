@@ -9,4 +9,5 @@ export const reducer = (state = initialAppState, action) => {
         state.cartItems = Object.assign(state.cartItems, action.data)
     }
     return state;
+    //return JSON.parse(JSON.stringify(state));
 };

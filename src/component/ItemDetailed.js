@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, ScrollView,TouchableOpacity,Button} from 'react-native';
+import {Button, Image, ScrollView, Text} from 'react-native';
 import {connect} from 'react-redux';
 
 import * as defaults from '../defaults'
@@ -55,18 +55,18 @@ function ItemDetailed({cartItems, dispatch, navigation, route}) {
             </Text>
             <Button
                 title={"Cart"}
-                onPress={()=>{
-                    navigation.navigate('CartScreen',{})
+                onPress={() => {
+                    navigation.navigate('CartScreen', {})
                 }}/>
         </ScrollView>
     );
 }
 
 const mapStateToProps = (state) => {
-    return {
-        cartItems: state.cartItems,
-    };
-}
+        return {
+            cartItems: state.cartItems,
+        };
+    }
 ;
 
 export default connect(mapStateToProps)(ItemDetailed);

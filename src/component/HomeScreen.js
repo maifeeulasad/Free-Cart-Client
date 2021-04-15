@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, ScrollView,Button, BackHandler} from 'react-native';
+import {Button, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
 import axios from "axios";
@@ -39,8 +39,8 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
             />
             <Button
                 title={"Cart"}
-                onPress={()=>{
-                    navigation.navigate('CartScreen',{})
+                onPress={() => {
+                    navigation.navigate('CartScreen', {})
                 }}/>
         </>
     )
