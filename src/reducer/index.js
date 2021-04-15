@@ -6,8 +6,7 @@ const initialAppState = {
 
 export const reducer = (state = initialAppState, action) => {
     if (action.type === SET_ITEM_ACTION) {
-        let data = {[action.id]: action.count}
-        Object.assign(state, data)
+        state.cartItems = Object.assign(state.cartItems, action.data)
     }
     return state;
 };

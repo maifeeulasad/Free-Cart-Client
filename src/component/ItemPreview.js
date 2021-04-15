@@ -7,7 +7,7 @@ import * as defaults from '../defaults'
 
 const screenWidth = Dimensions.get('window').width;
 
-function ItemPreview({cartItems, data, onClick}) {
+function ItemPreview({cartItems, data, onClick,dispatch}) {
 
     const [count, setCount] = useState(0);
     const [availability] = useState(data.availability || 0)
@@ -64,11 +64,11 @@ function ItemPreview({cartItems, data, onClick}) {
                         title={"-"}
                         onPress={() => {
                             if (count > 0) {
-                                setItemAction({[data.id]: count - 1})
+                                dispatch(setItemAction({[data.id]: count - 1}))
                                 setCount(count - 1)
                             }
                             if (count <= minimumOrder) {
-                                setItemAction({[data.id]: 0})
+                                dispatch(setItemAction({[data.id]: 0}))
                                 setCount(0)
                             }
                         }}/>
@@ -80,10 +80,10 @@ function ItemPreview({cartItems, data, onClick}) {
                         onPress={() => {
                             if (availability - count > 0 && availability > minimumOrder) {
                                 if (count < minimumOrder) {
-                                    setItemAction({[data.id]: minimumOrder})
+                                    dispatch(setItemAction({[data.id]: minimumOrder}))
                                     setCount(minimumOrder)
                                 } else {
-                                    setItemAction({[data.id]: count + 1})
+                                    dispatch(setItemAction({[data.id]: count + 1}))
                                     setCount(count + 1)
                                 }
                             }
