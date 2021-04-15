@@ -95,11 +95,19 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     title={"-"}
                     onPress={() => {
                         if (count > 0) {
-                            dispatch(setItemAction({[data.id]: count - 1}))
+                            if(id===undefined){
+                                dispatch(setItemAction({[data.id]: count - 1}))
+                            }else{
+                                dispatch(setItemAction({[id]: count - 1}))
+                            }
                             setCount(count - 1)
                         }
                         if (count <= minimumOrder) {
-                            dispatch(setItemAction({[data.id]: 0}))
+                            if(id===undefined){
+                                dispatch(setItemAction({[data.id]: 0}))
+                            }else{
+                                dispatch(setItemAction({[id]: 0}))
+                            }
                             setCount(0)
                         }
                     }}/>
@@ -111,10 +119,18 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     onPress={() => {
                         if (availability - count > 0 && availability > minimumOrder) {
                             if (count < minimumOrder) {
-                                dispatch(setItemAction({[data.id]: minimumOrder}))
+                                if(id===undefined){
+                                    dispatch(setItemAction({[data.id]: minimumOrder}))
+                                }else{
+                                    dispatch(setItemAction({[id]: minimumOrder}))
+                                }
                                 setCount(minimumOrder)
                             } else {
-                                dispatch(setItemAction({[data.id]: count + 1}))
+                                if(id===undefined){
+                                    dispatch(setItemAction({[data.id]: count+1}))
+                                }else{
+                                    dispatch(setItemAction({[id]: count+1}))
+                                }
                                 setCount(count + 1)
                             }
                         }
