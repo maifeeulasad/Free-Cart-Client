@@ -22,12 +22,16 @@ function CartScreen({cartItems, dispatch, navigation, route}) {
         <FlatList
             contentContainerStyle={{padding: 5}}
             showsHorizontalScrollIndicator={false}
-            numColumns={2}
             data={items}
             renderItem={({item}) => (
-                <Tem
-                    data={item}
-                />
+                <ItemPreview
+                    id={Object.keys(item)[0]}
+                    onClick={(productId) => {
+                        navigation.navigate('ItemDetailed', {
+                            id: productId,
+                        });
+                    }}
+                    />
             )}
             keyExtractor={(item, count) => count.toString()}
         />
