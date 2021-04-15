@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text} from 'react-native';
+import {BackHandler, FlatList, Text} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
 
@@ -7,6 +7,17 @@ import ItemPreview from "./ItemPreview";
 function CartScreen({cartItems, dispatch, navigation, route}) {
 
     const [items, setItems] = useState([])
+
+    function relaunchHomeScreen() {
+        navigation.navigate('HomeScreen', {cartItems:cartItems});
+    }
+
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', relaunchHomeScreen);
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', relaunchHomeScreen);
+        };
+    }, []);
 
     useEffect(()=>{
         let temItems = []

@@ -18,15 +18,6 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     const [price, setPrice] = useState(id === undefined ? data.price : 0)
     const [discount, setDiscount] = useState(id === undefined ? data.discount : 0)
 
-    /*
-    useEffect(()=>{
-        console.log("---")
-        console.log(cartItems[id])
-        console.log(cartItems[data.id])
-        //setCount(id!==undefined ? cartItems[id] : cartItems[data.id])
-    },[cartItems])
-    */
-
     useEffect(() => {
         if (id !== undefined) {
             axios

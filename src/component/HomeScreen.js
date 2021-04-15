@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, ScrollView,Button} from 'react-native';
+import {FlatList, ScrollView,Button, BackHandler} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
 import axios from "axios";
@@ -7,7 +7,9 @@ import axios from "axios";
 import * as defaults from '../defaults'
 
 function HomeScreen({cartItems, dispatch, navigation, route}) {
+
     const [products, setProducts] = useState([]);
+
     useEffect(function () {
         axios
             .get(defaults.baseUrl + "/product/featured/")
