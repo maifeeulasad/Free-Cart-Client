@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Text} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
@@ -6,9 +6,38 @@ import ItemPreview from "./ItemPreview";
 
 function CartScreen({cartItems, dispatch, navigation, route}) {
 
+    const [items, setItems] = useState([])
+
+    useEffect(()=>{
+        let temItems = []
+        Object.keys(cartItems).map((key)=>{
+            if(cartItems[key]>0){
+                temItems.push({[key]:cartItems[key]})
+            }
+        })
+        setItems(temItems)
+    },[])
+
     return (
-        <Text>{cartItems.toString()}</Text>
+        <FlatList
+            contentContainerStyle={{padding: 5}}
+            showsHorizontalScrollIndicator={false}
+            numColumns={2}
+            data={items}
+            renderItem={({item}) => (
+                <Tem
+                    data={item}
+                />
+            )}
+            keyExtractor={(item, count) => count.toString()}
+        />
     );
+}
+
+function Tem({data}) {
+    return(
+        <Text>{JSON.stringify(data)}</Text>
+    )
 }
 
 const mapStateToProps = (state) => {
