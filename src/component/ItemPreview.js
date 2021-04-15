@@ -18,6 +18,15 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     const [price, setPrice] = useState(id === undefined ? data.price : 0)
     const [discount, setDiscount] = useState(id === undefined ? data.discount : 0)
 
+    /*
+    useEffect(()=>{
+        console.log("---")
+        console.log(cartItems[id])
+        console.log(cartItems[data.id])
+        //setCount(id!==undefined ? cartItems[id] : cartItems[data.id])
+    },[cartItems])
+    */
+
     useEffect(() => {
         if (id !== undefined) {
             axios
@@ -34,79 +43,82 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     }, [])
 
     return (
-        <View style={{width: screenWidth / 2 - 5, padding: 5}}>
-            <View
-                style={{
-                    justifyContent: 'space-between',
-                    borderRadius: 3,
-                    shadowRadius: 3,
-                    elevation: 3,
-                    shadowOffset: {width: 0, height: 2},
-                    shadowOpacity: 0.3,
-                    backgroundColor: 'white',
+        <View
+            style={{
+                justifyContent: 'space-between',
+                borderRadius: 3,
+                shadowRadius: 3,
+                elevation: 3,
+                shadowOffset: {width: 0, height: 2},
+                shadowOpacity: 0.3,
+                backgroundColor: 'white',
+                width: id === undefined ? screenWidth / 2 - 5 : screenWidth,
+                padding: 5,
+                flexDirection: id === undefined ? undefined : "row"
+            }}>
+            <TouchableOpacity
+                style={{flexDirection: id === undefined ? undefined : "row"}}
+                onPress={() => {
+                    onClick(id === undefined ? data.id : id)
                 }}>
-
-                <TouchableOpacity onPress={() => {
-                    onClick(id===undefined ? data.id : id)
-                }}>
-                    <Image
-                        source={{
-                            uri: image
-                        }}
-                        style={{
-                            height: undefined,
-                            alignSelf: 'center',
-                            aspectRatio: 1,
-                            width: '100%',
-                            justifyContent: 'flex-end',
-                            padding: 10,
-                            borderRadius: 3,
-                            shadowRadius: 3,
-                            shadowOffset: {width: 0, height: 2},
-                            shadowOpacity: 0.3,
-                            overflow: 'hidden',
-                            alignItems: 'center',
-                            backgroundColor: 'orange',
-                            position: 'relative',
-                            margin: 10,
-                        }}
-                    />
+                <Image
+                    source={{
+                        uri: image
+                    }}
+                    style={{
+                        height: undefined,
+                        alignSelf: 'center',
+                        aspectRatio: 1,
+                        width: id === undefined ? '100%' : '20%',
+                        justifyContent: 'flex-end',
+                        padding: 10,
+                        borderRadius: 3,
+                        shadowRadius: 3,
+                        shadowOffset: {width: 0, height: 2},
+                        shadowOpacity: 0.3,
+                        overflow: 'hidden',
+                        alignItems: 'center',
+                        backgroundColor: 'orange',
+                        position: 'relative',
+                        margin: 10,
+                    }}
+                />
+                <View>
                     <Text>{name}</Text>
-                    <Text style={{textAlign: 'right'}}>{
+                    <Text style={{textAlign: id === undefined ? 'right' : 'left'}}>{
                         "Price : " + (price - discount > 0 ? price - discount : 0)
                     }</Text>
-
-                </TouchableOpacity>
-                <View style={{flexDirection: "row"}}>
-                    <Button
-                        title={"-"}
-                        onPress={() => {
-                            if (count > 0) {
-                                dispatch(setItemAction({[data.id]: count - 1}))
-                                setCount(count - 1)
-                            }
-                            if (count <= minimumOrder) {
-                                dispatch(setItemAction({[data.id]: 0}))
-                                setCount(0)
-                            }
-                        }}/>
-                    <Text style={{flexGrow: 1, textAlign: 'center'}}>
-                        {count}
-                    </Text>
-                    <Button
-                        title={"+"}
-                        onPress={() => {
-                            if (availability - count > 0 && availability > minimumOrder) {
-                                if (count < minimumOrder) {
-                                    dispatch(setItemAction({[data.id]: minimumOrder}))
-                                    setCount(minimumOrder)
-                                } else {
-                                    dispatch(setItemAction({[data.id]: count + 1}))
-                                    setCount(count + 1)
-                                }
-                            }
-                        }}/>
                 </View>
+            </TouchableOpacity>
+            <View style={{flexDirection: "row"}}>
+                <Button
+                    title={"-"}
+                    onPress={() => {
+                        if (count > 0) {
+                            dispatch(setItemAction({[data.id]: count - 1}))
+                            setCount(count - 1)
+                        }
+                        if (count <= minimumOrder) {
+                            dispatch(setItemAction({[data.id]: 0}))
+                            setCount(0)
+                        }
+                    }}/>
+                <Text style={{flexGrow: 1, textAlign: 'center'}}>
+                    {count}
+                </Text>
+                <Button
+                    title={"+"}
+                    onPress={() => {
+                        if (availability - count > 0 && availability > minimumOrder) {
+                            if (count < minimumOrder) {
+                                dispatch(setItemAction({[data.id]: minimumOrder}))
+                                setCount(minimumOrder)
+                            } else {
+                                dispatch(setItemAction({[data.id]: count + 1}))
+                                setCount(count + 1)
+                            }
+                        }
+                    }}/>
             </View>
         </View>
     );
