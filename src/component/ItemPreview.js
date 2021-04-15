@@ -90,7 +90,7 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     }</Text>
                 </View>
             </TouchableOpacity>
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: 'center'}}>
                 <Button
                     title={"-"}
                     onPress={() => {
