@@ -9,17 +9,14 @@ import * as defaults from '../defaults'
 function HomeScreen({cartItems, dispatch, navigation, route}) {
 
     const [products, setProducts] = useState([]);
-    const [isCartAvailable,setCartAvailable] = useState(false);
+    const [total,setTotal] = useState(0)
 
     useEffect(()=>{
-        let temCartAvailable = false
+        let temTotal = 0
         Object.keys(cartItems).map((key) => {
-            if (cartItems[key]['count'] > 0) {
-                temCartAvailable = true
-                return false
-            }
+            temTotal += cartItems[key]['count']*cartItems[key]['price']
         })
-        setCartAvailable(temCartAvailable)
+        setTotal(temTotal)
     },[cartItems])
 
     useEffect(function () {
@@ -50,9 +47,9 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
                 keyExtractor={(item, count) => count.toString()}
             />
             {
-                isCartAvailable &&
+                total>0 &&
                 <Button
-                    title={"Cart"}
+                    title={"Cart : "+total + " taka"}
                     onPress={() => {
                         navigation.navigate('CartScreen', {})
                     }}/>
