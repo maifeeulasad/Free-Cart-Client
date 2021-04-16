@@ -4,7 +4,8 @@ const initialAppState = {
     cartItems: {},
     name: '',
     address: '',
-    contact: ''
+    contact: '',
+    price: 0
 };
 
 export const reducer = (state = initialAppState, action) => {
@@ -13,5 +14,6 @@ export const reducer = (state = initialAppState, action) => {
     }else if(action.type===CLEAR_ITEM_ACTION){
         state.cartItems = {}
     }
+    console.log(JSON.stringify(state.cartItems))
     return {...state};
 };

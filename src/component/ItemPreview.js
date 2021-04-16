@@ -10,7 +10,7 @@ const screenWidth = Dimensions.get('window').width;
 
 function ItemPreview({cartItems, data, onClick, dispatch, id}) {
 
-    const [count, setCount] = useState(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]) : cartItems[id]);
+    const [count, setCount] = useState(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]['count']) : cartItems[id]['count']);
     const [availability, setAvailability] = useState(id === undefined ? (data.availability || 0) : 0)
     const [minimumOrder, setMinimumOrder] = useState(id === undefined ? (data.minimum_order || 0) : 0)
     const [image, setImage] = useState((id === undefined && data.image !== "" && data.image !== undefined) ? data.image : defaults.imageUrl)
@@ -19,7 +19,7 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     const [discount, setDiscount] = useState(id === undefined ? data.discount : 0)
 
     useEffect(()=>{
-        setCount(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]) : cartItems[id])
+        setCount(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]['count']) : cartItems[id]['count'])
     },[cartItems])
 
     useEffect(() => {
@@ -90,18 +90,20 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     title={"-"}
                     onPress={() => {
                         if (count > 0) {
-                            if(id===undefined){
-                                dispatch(setItemAction({[data.id]: count - 1}))
-                            }else{
-                                dispatch(setItemAction({[id]: count - 1}))
-                            }
+                            dispatch(setItemAction({
+                                [id===undefined ? data.id : id]: {
+                                    "count" : count-1,
+                                    "price": (price - discount > 0 ? price - discount : 0)
+                                }
+                            }))
                         }
                         if (count <= minimumOrder) {
-                            if(id===undefined){
-                                dispatch(setItemAction({[data.id]: 0}))
-                            }else{
-                                dispatch(setItemAction({[id]: 0}))
-                            }
+                            dispatch(setItemAction({
+                                [id===undefined ? data.id : id]: {
+                                    "count" : 0,
+                                    "price": (price - discount > 0 ? price - discount : 0)
+                                }
+                            }))
                         }
                     }}/>
                 <Text style={{flexGrow: 1, textAlign: 'center'}}>
@@ -112,17 +114,19 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     onPress={() => {
                         if (availability - count > 0 && availability > minimumOrder) {
                             if (count < minimumOrder) {
-                                if(id===undefined){
-                                    dispatch(setItemAction({[data.id]: minimumOrder}))
-                                }else{
-                                    dispatch(setItemAction({[id]: minimumOrder}))
-                                }
+                                dispatch(setItemAction({
+                                    [id===undefined ? data.id : id]:{
+                                        "count" : minimumOrder,
+                                        "price": (price - discount > 0 ? price - discount : 0)
+                                    }
+                                }))
                             } else {
-                                if(id===undefined){
-                                    dispatch(setItemAction({[data.id]: count+1}))
-                                }else{
-                                    dispatch(setItemAction({[id]: count+1}))
-                                }
+                                dispatch(setItemAction({
+                                    [id===undefined ? data.id : id]: {
+                                        "count" : count+1,
+                                        "price": (price - discount > 0 ? price - discount : 0)
+                                    }
+                                }))
                             }
                         }
                     }}/>
@@ -137,4 +141,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ItemPreview);
+export default connect(mapStateToProps)(ItemPreview)
