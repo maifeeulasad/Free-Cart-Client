@@ -17,6 +17,13 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     const [name, setName] = useState(id === undefined ? data.name : "")
     const [price, setPrice] = useState(id === undefined ? data.price : 0)
     const [discount, setDiscount] = useState(id === undefined ? data.discount : 0)
+    const [subTotal,setSubtotal] = useState(0)
+
+    useEffect(()=>{
+        if(id!==undefined){
+            setSubtotal(cartItems[id]["count"]*cartItems[id]["price"])
+        }
+    },[count,price,discount])
 
     useEffect(()=>{
         setCount(id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]['count']) : cartItems[id]['count'])
@@ -85,6 +92,10 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                     }</Text>
                 </View>
             </TouchableOpacity>
+            {
+                id!==undefined &&
+                <Text>{subTotal}</Text>
+            }
             <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: 'center'}}>
                 <Button
                     title={"-"}
