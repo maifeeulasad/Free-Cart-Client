@@ -9,6 +9,18 @@ import * as defaults from '../defaults'
 function HomeScreen({cartItems, dispatch, navigation, route}) {
 
     const [products, setProducts] = useState([]);
+    const [isCartAvailable,setCartAvailable] = useState(false);
+
+    useEffect(()=>{
+        let temCartAvailable = false
+        Object.keys(cartItems).map((key) => {
+            if (cartItems[key] > 0) {
+                temCartAvailable = true
+                return false
+            }
+        })
+        setCartAvailable(temCartAvailable)
+    },[cartItems])
 
     useEffect(function () {
         axios
@@ -37,11 +49,14 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
                 )}
                 keyExtractor={(item, count) => count.toString()}
             />
-            <Button
-                title={"Cart"}
-                onPress={() => {
-                    navigation.navigate('CartScreen', {})
-                }}/>
+            {
+                isCartAvailable &&
+                <Button
+                    title={"Cart"}
+                    onPress={() => {
+                        navigation.navigate('CartScreen', {})
+                    }}/>
+            }
         </>
     )
 }
