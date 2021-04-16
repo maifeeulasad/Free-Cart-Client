@@ -9,6 +9,7 @@ import SplashScreen from "./src/component/SplashScreen";
 import HomeScreen from "./src/component/HomeScreen";
 import ItemDetailed from "./src/component/ItemDetailed";
 import CartScreen from "./src/component/CartScreen";
+import CheckoutScreen from "./src/component/CheckoutScreen";
 
 export const PageContext = React.createContext();
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export default function App() {
                         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                         <Stack.Screen name="ItemDetailed" component={ItemDetailed}/>
                         <Stack.Screen name="CartScreen" component={CartScreen}/>
+                        <Stack.Screen name="CheckoutScreen" component={CheckoutScreen}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>

@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text} from 'react-native';
+import {FlatList,Button} from 'react-native';
 import {connect} from 'react-redux';
 import ItemPreview from "./ItemPreview";
-
 
 function CartScreen({cartItems, dispatch, navigation, route}) {
 
@@ -19,30 +18,36 @@ function CartScreen({cartItems, dispatch, navigation, route}) {
     }, [])
 
     return (
-        <FlatList
-            contentContainerStyle={{padding: 5}}
-            showsHorizontalScrollIndicator={false}
-            data={items}
-            renderItem={({item}) => (
-                <ItemPreview
-                    id={Object.keys(item)[0]}
-                    onClick={(productId) => {
-                        navigation.navigate('ItemDetailed', {
-                            id: productId,
-                        });
-                    }}
-                />
-            )}
-            keyExtractor={(item, count) => count.toString()}
-        />
+        <>
+            <FlatList
+                contentContainerStyle={{padding: 5}}
+                showsHorizontalScrollIndicator={false}
+                data={items}
+                renderItem={({item}) => (
+                    <ItemPreview
+                        id={Object.keys(item)[0]}
+                        onClick={(productId) => {
+                            navigation.navigate('ItemDetailed', {
+                                id: productId,
+                            });
+                        }}
+                    />
+                )}
+                keyExtractor={(item, count) => count.toString()}
+            />
+            <Button
+                title={"Checkout"}
+                onPress={() => {
+                    navigation.navigate('CheckoutScreen', {})
+                }}/>
+        </>
     );
 }
 
 const mapStateToProps = (state) => {
-        return {
-            cartItems: state.cartItems,
-        };
-    }
-;
+    return {
+        cartItems: state.cartItems,
+    };
+};
 
 export default connect(mapStateToProps)(CartScreen);
