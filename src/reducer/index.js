@@ -9,5 +9,4 @@ export const reducer = (state = initialAppState, action) => {
         state.cartItems = {...state.cartItems, ...action.data}
     }
     return {...state};
-    //return JSON.parse(JSON.stringify(state));
 };
