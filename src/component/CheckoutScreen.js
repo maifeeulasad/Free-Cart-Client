@@ -39,7 +39,8 @@ function CheckoutScreen({cartItems, dispatch, navigation, route}) {
                             .post(defaults.baseUrl + "/product/order/",{
                                 "name":name,
                                 "address":address,
-                                "contact":contact
+                                "contact":contact,
+                                "cart_items":cartItems
                             }).then((res)=>{
                                 if(res.data===true){
                                     dispatch(clearItemAction())
