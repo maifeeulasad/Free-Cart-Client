@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import axios from "axios";
 
 import * as defaults from '../defaults'
-import {clearItemAction, setItemAction} from "../action";
+import {clearItemAction} from "../action";
 
 function CheckoutScreen({cartItems, dispatch, navigation, route}) {
 

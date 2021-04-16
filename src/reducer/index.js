@@ -2,6 +2,9 @@ import {CLEAR_ITEM_ACTION, SET_ITEM_ACTION} from '../action'
 
 const initialAppState = {
     cartItems: {},
+    name: '',
+    address: '',
+    contact: ''
 };
 
 export const reducer = (state = initialAppState, action) => {
