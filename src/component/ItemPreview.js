@@ -18,6 +18,16 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
     const [price, setPrice] = useState(id === undefined ? data.price : 0)
     const [discount, setDiscount] = useState(id === undefined ? data.discount : 0)
 
+    useEffect(()=>{
+        if(id===undefined){
+            let coun=id === undefined ? (cartItems[data.id]===undefined ? 0 : cartItems[data.id]) : cartItems[id]
+            if(coun!==0){
+                console.log("count of id - " + id + " - " + (data!==undefined ? data.id : ""))
+                console.log(coun)
+            }
+        }
+    },[cartItems])
+
     useEffect(() => {
         if (id !== undefined) {
             axios
@@ -91,7 +101,7 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                             }else{
                                 dispatch(setItemAction({[id]: count - 1}))
                             }
-                            setCount(count - 1)
+                            //setCount(count - 1)
                         }
                         if (count <= minimumOrder) {
                             if(id===undefined){
@@ -99,7 +109,7 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                             }else{
                                 dispatch(setItemAction({[id]: 0}))
                             }
-                            setCount(0)
+                            //setCount(0)
                         }
                     }}/>
                 <Text style={{flexGrow: 1, textAlign: 'center'}}>
@@ -115,14 +125,14 @@ function ItemPreview({cartItems, data, onClick, dispatch, id}) {
                                 }else{
                                     dispatch(setItemAction({[id]: minimumOrder}))
                                 }
-                                setCount(minimumOrder)
+                                //setCount(minimumOrder)
                             } else {
                                 if(id===undefined){
                                     dispatch(setItemAction({[data.id]: count+1}))
                                 }else{
                                     dispatch(setItemAction({[id]: count+1}))
                                 }
-                                setCount(count + 1)
+                                //setCount(count + 1)
                             }
                         }
                     }}/>
