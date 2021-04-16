@@ -14,7 +14,7 @@ function HomeScreen({cartItems, dispatch, navigation, route}) {
     useEffect(()=>{
         let temCartAvailable = false
         Object.keys(cartItems).map((key) => {
-            if (cartItems[key] > 0) {
+            if (cartItems[key]['count'] > 0) {
                 temCartAvailable = true
                 return false
             }

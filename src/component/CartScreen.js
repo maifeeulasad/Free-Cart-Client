@@ -6,16 +6,25 @@ import ItemPreview from "./ItemPreview";
 function CartScreen({cartItems, dispatch, navigation, route}) {
 
     const [items, setItems] = useState([])
+    const [total,setTotal] = useState(0)
 
     useEffect(() => {
         let temItems = []
         Object.keys(cartItems).map((key) => {
-            if (cartItems[key] > 0) {
+            if (cartItems[key]['count'] > 0) {
                 temItems.push({[key]: cartItems[key]})
             }
         })
         setItems(temItems)
     }, [])
+
+    useEffect(()=>{
+        let temTotal = 0
+        Object.keys(cartItems).map((key) => {
+            temTotal += cartItems[key]['count'] * cartItems[key]['price']
+        })
+        setTotal(temTotal)
+    },[cartItems])
 
     return (
         <>
@@ -35,11 +44,14 @@ function CartScreen({cartItems, dispatch, navigation, route}) {
                 )}
                 keyExtractor={(item, count) => count.toString()}
             />
-            <Button
-                title={"Checkout"}
-                onPress={() => {
-                    navigation.navigate('CheckoutScreen', {})
-                }}/>
+            {
+                total > 0 &&
+                <Button
+                    title={"Checkout : " + total + " taka"}
+                    onPress={() => {
+                        navigation.navigate('CheckoutScreen', {})
+                    }}/>
+            }
         </>
     );
 }

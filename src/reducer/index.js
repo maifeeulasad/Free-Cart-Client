@@ -5,7 +5,6 @@ const initialAppState = {
     name: '',
     address: '',
     contact: '',
-    price: 0
 };
 
 export const reducer = (state = initialAppState, action) => {
