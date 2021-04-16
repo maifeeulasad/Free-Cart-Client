@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {TextInput, View, Button} from 'react-native';
+import {TextInput, Button} from 'react-native';
 import {connect} from 'react-redux';
 import axios from "axios";
 
 import * as defaults from '../defaults'
+import {clearItemAction, setItemAction} from "../action";
 
 function CheckoutScreen({cartItems, dispatch, navigation, route}) {
 
@@ -41,6 +42,7 @@ function CheckoutScreen({cartItems, dispatch, navigation, route}) {
                                 "contact":contact
                             }).then((res)=>{
                                 if(res.data===true){
+                                    dispatch(clearItemAction())
                                     navigation.navigate("HomeScreen")
                                 }
                         })
