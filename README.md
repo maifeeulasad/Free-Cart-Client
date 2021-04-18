@@ -2,6 +2,8 @@
 
 ## Getting ready for own deployment :
  - Clone it
+   - `git clone https://github.com/maifeeulasad/Free-Cart-Client.git`
+   - Or download `https://github.com/maifeeulasad/Free-Cart-Client/archive/refs/heads/master.zip` 
  - Open `/src/defaults.js` and change the server url : https://github.com/maifeeulasad/Free-Cart-Client/blob/master/src/defaults.js#L1
  - And you can change the default image url also, that's just a line below.
  - Build
