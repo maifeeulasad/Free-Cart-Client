@@ -1,5 +1,37 @@
 # Free-Cart-Client
 
+## API 
+ - **GET** */product/featured/*
+   - 
+    ```
+    [
+      {
+        "id": "string id",
+        "name": "product name",
+        "title": "product title",
+        "details": "product details",
+        "tags": ["tag1", "tag2"],
+        "price": 0,
+        "discount": 0,
+        "image": "",
+        "availability": 100,
+        "minimum_order":1,
+      },
+      ...
+    ]
+    ```
+ - **POST** */product/order/*
+   -
+   ```
+   {
+     user_details: {
+       name: 'name',
+       address: 'address',
+       contact: 'contact number'
+     },
+     cart_items: { '1': { count: 1, price: 440 }, '4': { count: 5, price: 3350 } }
+   }
+   ```
 
 ## Snaps : 
 
