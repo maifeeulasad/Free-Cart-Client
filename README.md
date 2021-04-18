@@ -51,3 +51,19 @@ Home                       |  Home with a few orders
 Cart                       |  Checkout/Place Order
 :-------------------------:|:-------------------------:
 ![cart-free cart client-mua-maifee](https://github.com/maifeeulasad/Free-Cart-Client/blob/gh-pages/snaps/Screenshot_2021-04-18-13-55-28-776_com.freecartclient.jpg) | ![checkout/place order-free cart client-mua-maifee](https://github.com/maifeeulasad/Free-Cart-Client/blob/gh-pages/snaps/Screenshot_2021-04-18-13-55-56-094_com.freecartclient.jpg)
+
+## Custom build :
+**If you need custom feature, you can contact with me. I think we can come to some sort of agreement**
+
+Features like :
+ - implement login
+  - basic
+  - jwt
+  - oauth2
+ - group product by tag
+ - add analytics
+ - add location suppport
+ - product suggestion(backend in django or node using tensorflow)
+
+## Need server ?
+Build your own **or contact me**
