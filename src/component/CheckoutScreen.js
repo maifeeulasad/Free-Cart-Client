@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {TextInput, Button} from 'react-native';
+import {Button, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import axios from "axios";
 
@@ -36,16 +36,18 @@ function CheckoutScreen({cartItems, dispatch, navigation, route}) {
                 <Button
                     onPress={() => {
                         axios
-                            .post(defaults.baseUrl + "/product/order/",{
-                                "name":name,
-                                "address":address,
-                                "contact":contact,
-                                "cart_items":cartItems
-                            }).then((res)=>{
-                                if(res.data===true){
-                                    dispatch(clearItemAction())
-                                    navigation.navigate("HomeScreen")
-                                }
+                            .post(defaults.baseUrl + "/product/order/", {
+                                "user_details": {
+                                    "name": name,
+                                    "address": address,
+                                    "contact": contact,
+                                },
+                                "cart_items": cartItems
+                            }).then((res) => {
+                            if (res.data === true) {
+                                dispatch(clearItemAction())
+                                navigation.navigate("HomeScreen")
+                            }
                         })
                     }}
                     title={"Place order"}/>
