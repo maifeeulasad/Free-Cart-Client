@@ -1,5 +1,12 @@
 # Free-Cart-Client
 
+## Getting ready for own deployment :
+ - Clone it
+ - Open `/src/defaults.js` and change the server url : https://github.com/maifeeulasad/Free-Cart-Client/blob/master/src/defaults.js#L1
+ - And you can change the default image url also, that's just a line below.
+ - Build
+ - Share with your client
+
 ## API 
  - **GET** */product/featured/*
    - 
